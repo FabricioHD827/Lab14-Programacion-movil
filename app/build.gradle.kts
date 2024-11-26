@@ -68,4 +68,9 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    //newDependenciesMaterial
+    implementation("androidx.compose.material:material:1.5.0")
+    implementation("androidx.compose.ui:ui:1.5.0")
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.6.0")
 }
