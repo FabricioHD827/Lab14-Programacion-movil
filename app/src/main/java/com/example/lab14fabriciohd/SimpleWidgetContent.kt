@@ -3,62 +3,75 @@ package com.example.lab14fabriciohd
 import android.content.Context
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.dp
-import androidx.glance.Button
 import androidx.glance.GlanceId
 import androidx.glance.GlanceModifier
-import androidx.glance.GlanceTheme
-import androidx.glance.action.actionStartActivity
 import androidx.glance.appwidget.GlanceAppWidget
 import androidx.glance.appwidget.provideContent
-import androidx.glance.background
 import androidx.glance.layout.Alignment
-import androidx.glance.layout.Column
 import androidx.glance.layout.Row
-import androidx.glance.layout.fillMaxSize
 import androidx.glance.layout.padding
+import androidx.glance.layout.size
 import androidx.glance.text.Text
+import androidx.glance.layout.fillMaxSize
+import androidx.glance.layout.Column
+import androidx.glance.Image
+import androidx.glance.ImageProvider
+import androidx.glance.background
 
 class SimpleWidgetContent : GlanceAppWidget() {
 
     override suspend fun provideGlance(context: Context, id: GlanceId) {
-
         provideContent {
-            GlanceTheme {
-                MyContent()
-            }
+            MyWidgetContent()
         }
     }
 
     @Composable
-    private fun MyContent() {
+    fun MyWidgetContent() {
         Column(
-            modifier = GlanceModifier.fillMaxSize()
-                .background(GlanceTheme.colors.background),
-            verticalAlignment = Alignment.Top,
-            horizontalAlignment = Alignment.CenterHorizontally
+            modifier = GlanceModifier
+                .fillMaxSize()
+                .background(android.R.color.background_light)
+                .padding(8.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            Text(text = "¿Qué deseas hacer?", modifier = GlanceModifier.padding(12.dp))
-
+            Text(
+                text = "Accesos rápidos",
+                modifier = GlanceModifier.padding(bottom = 8.dp)
+            )
             Row(
+                modifier = GlanceModifier.fillMaxSize(),
                 horizontalAlignment = Alignment.CenterHorizontally,
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = GlanceModifier.padding(8.dp)
+                verticalAlignment = Alignment.CenterVertically
             ) {
-                Button(
-                    text = "Compra rápida",
-                    onClick = actionStartActivity<CompraRapidaActivity>()
-                )
-            }
+                // Botón para "Compra Rápida"
+                Column(
+                    modifier = GlanceModifier.padding(8.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Image(
+                        provider = ImageProvider(R.drawable.ic_cart),
+                        contentDescription = "Compra rápida",
+                        modifier = GlanceModifier.size(48.dp).padding(bottom = 4.dp)
+                    )
+                    Text(text = "Compra rápida")
+                    androidx.glance.action.actionStartActivity<CompraRapidaActivity>()
+                }
 
-            Row(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = GlanceModifier.padding(8.dp)
-            ) {
-                Button(
-                    text = "Mi Lista de compras",
-                    onClick = actionStartActivity<ListaComprasActivity>()
-                )
+                // Botón para "Mi Lista de Compras"
+                Column(
+                    modifier = GlanceModifier.padding(8.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Image(
+                        provider = ImageProvider(R.drawable.ic_list),
+                        contentDescription = "Mi Lista de Compras",
+                        modifier = GlanceModifier.size(48.dp).padding(bottom = 4.dp)
+                    )
+                    Text(text = "Mi Lista de Compras")
+                    androidx.glance.action.actionStartActivity<ListaComprasActivity>()
+                }
             }
         }
     }
