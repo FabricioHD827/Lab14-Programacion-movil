@@ -24,6 +24,11 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".SecondActivity"
+            android:label="Vista Secundaria"
+            android:exported="true" />
+
         <receiver android:name=".SimpleWidget"
             android:exported="true">
             <intent-filter>
@@ -31,7 +36,7 @@
             </intent-filter>
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/my_app_widget_info" />
+                android:resource="@xml/simple_widget_info" />
         </receiver>
 
     </application>
