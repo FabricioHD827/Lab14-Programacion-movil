@@ -33,7 +33,7 @@ fun CompraRapidaScreen() {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Mi lista", fontSize = 20.sp, fontWeight = FontWeight.Bold) },
+                title = { Text("Compra Rápida", fontSize = 20.sp, fontWeight = FontWeight.Bold) },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = Color(0xFF4CAF50),
                     titleContentColor = Color.White
@@ -52,7 +52,7 @@ fun CompraRapidaScreen() {
         content = {
             LazyColumn(modifier = Modifier.padding(it)) {
                 item {
-                    CategoryTitle(title = "Frutas, verduras y huevos")
+                    CategoryTitle(title = "Frutas y Verduras")
                 }
                 items(2) { index ->
                     ProductRow(
@@ -63,7 +63,7 @@ fun CompraRapidaScreen() {
                 }
 
                 item {
-                    CategoryTitle(title = "Abarrotes")
+                    CategoryTitle(title = "Productos Empacados")
                 }
                 items(2) { index ->
                     ProductRow(
@@ -74,7 +74,7 @@ fun CompraRapidaScreen() {
                 }
 
                 item {
-                    CategoryTitle(title = "Carrito")
+                    CategoryTitle(title = "En el Carrito")
                 }
                 items(1) {
                     ProductRow(
