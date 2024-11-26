@@ -21,6 +21,7 @@ import androidx.glance.text.Text
 class SimpleWidgetContent : GlanceAppWidget() {
 
     override suspend fun provideGlance(context: Context, id: GlanceId) {
+
         provideContent {
             GlanceTheme {
                 MyContent()
@@ -36,15 +37,27 @@ class SimpleWidgetContent : GlanceAppWidget() {
             verticalAlignment = Alignment.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(text = "¿A dónde quieres dirigirte?", modifier = GlanceModifier.padding(12.dp))
-            Row(horizontalAlignment = Alignment.CenterHorizontally) {
+            Text(text = "¿Qué deseas hacer?", modifier = GlanceModifier.padding(12.dp))
+
+            Row(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = GlanceModifier.padding(8.dp)
+            ) {
                 Button(
-                    text = "Página Principal",
-                    onClick = actionStartActivity<MainActivity>()
+                    text = "Compra rápida",
+                    onClick = actionStartActivity<CompraRapidaActivity>()
                 )
+            }
+
+            Row(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = GlanceModifier.padding(8.dp)
+            ) {
                 Button(
-                    text = "Vista Secundaria",
-                    onClick = actionStartActivity<SecondActivity>()
+                    text = "Mi Lista de compras",
+                    onClick = actionStartActivity<ListaComprasActivity>()
                 )
             }
         }

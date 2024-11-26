@@ -24,9 +24,16 @@
             </intent-filter>
         </activity>
 
+        <!-- CompraRapidaActivity -->
         <activity
-            android:name=".SecondActivity"
-            android:label="Vista Secundaria"
+            android:name=".CompraRapidaActivity"
+            android:label="Compra Rápida"
+            android:exported="true" />
+
+        <!-- ListaComprasActivity -->
+        <activity
+            android:name=".ListaComprasActivity"
+            android:label="Mi Lista de Compras"
             android:exported="true" />
 
         <receiver android:name=".SimpleWidget"
