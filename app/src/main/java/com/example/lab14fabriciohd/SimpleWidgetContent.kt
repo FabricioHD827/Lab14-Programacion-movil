@@ -22,17 +22,20 @@ import androidx.glance.text.FontWeight
 import androidx.glance.text.TextStyle
 import androidx.compose.ui.graphics.Color
 import androidx.glance.action.clickable
+import androidx.glance.layout.fillMaxWidth
 
 class SimpleWidgetContent : GlanceAppWidget() {
 
     override suspend fun provideGlance(context: Context, id: GlanceId) {
+        val productCount = WidgetPreferencesManager.getProductCount(context)
+
         provideContent {
-            MyWidgetContent()
+            MyWidgetContent(productCount, context)
         }
     }
 
     @Composable
-    fun MyWidgetContent() {
+    fun MyWidgetContent(productCount: Int, context: Context) {
         Column(
             modifier = GlanceModifier
                 .fillMaxSize()
@@ -41,17 +44,34 @@ class SimpleWidgetContent : GlanceAppWidget() {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalAlignment = Alignment.CenterVertically
         ) {
+            Row(
+                modifier = GlanceModifier.fillMaxWidth(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Image(
+                    provider = ImageProvider(R.drawable.ic_plus),
+                    contentDescription = "Incrementar productos",
+                    modifier = GlanceModifier
+                        .size(40.dp)
+                        .background(androidx.glance.unit.ColorProvider(Color(0xFF388E3C)))
+                        .clickable {
+                            WidgetPreferencesManager.incrementProductCount(context)
+                        }
+                )
+            }
+
             Text(
-                text = "Accesos rápidos",
+                text = "Lista de productos: $productCount",
                 modifier = GlanceModifier.padding(bottom = 12.dp),
-                style = TextStyle(color = androidx.glance.unit.ColorProvider(Color.White), fontWeight = FontWeight.Bold)  // Título blanco y en negrita
+                style = TextStyle(color = androidx.glance.unit.ColorProvider(Color.White), fontWeight = FontWeight.Bold)
             )
+
             Row(
                 modifier = GlanceModifier.fillMaxSize(),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                // Botón para "Compra Rápida"
                 Column(
                     modifier = GlanceModifier.padding(12.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
@@ -61,7 +81,7 @@ class SimpleWidgetContent : GlanceAppWidget() {
                         contentDescription = "Compra rápida",
                         modifier = GlanceModifier
                             .size(60.dp)
-                            .background(androidx.glance.unit.ColorProvider(Color(0xFF4CAF50))) 
+                            .background(androidx.glance.unit.ColorProvider(Color(0xFF4CAF50)))
                             .padding(12.dp)
                             .clickable(actionStartActivity<CompraRapidaActivity>())
                     )

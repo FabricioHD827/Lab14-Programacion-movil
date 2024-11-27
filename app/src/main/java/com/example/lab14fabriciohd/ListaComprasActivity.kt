@@ -112,13 +112,13 @@ fun ShoppingRow(item: ShoppingItem, onCheckedChange: (Boolean) -> Unit) {
         )
         IconButton(onClick = { }) {
             Icon(
-                painter = painterResource(id = android.R.drawable.ic_menu_edit), // Usa íconos nativos
+                painter = painterResource(id = android.R.drawable.ic_menu_edit),
                 contentDescription = "Editar"
             )
         }
         IconButton(onClick = { }) {
             Icon(
-                painter = painterResource(id = android.R.drawable.ic_menu_sort_by_size), // Usa íconos nativos
+                painter = painterResource(id = android.R.drawable.ic_menu_sort_by_size),
                 contentDescription = "Mover"
             )
         }
